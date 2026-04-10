@@ -52,7 +52,7 @@ fit_att
 
 ## References
 
-Zeng, Y., Li, F., and Hong, G. (2026). Weighted Double Score Matching for Causal Inference with Survey-Weighted Observational Data. *Working Paper*.
+Zeng, Y., Tong, G., Tong, J., Lu, H., Mukherjee, B., and Li, F. (2026). Where to weight? Estimating population causal effects with weighted double score matching in complex surveys. *Manuscript under review*.
 
 ## License
 
