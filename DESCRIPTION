@@ -3,18 +3,23 @@ Type: Package
 Title: Weighted Double Score Matching for Survey-Weighted Causal Inference
 Version: 0.1.0
 Authors@R: c(
-    person("Yukang", "Zeng", email = "ykzeng2019@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0000-0000-0000")),
+    person("Yukang", "Zeng", email = "ykzeng2019@gmail.com", role = c("aut", "cre")),
     person("Fan", "Li", email = "fan.f.li@yale.edu", role = "aut"),
     person("Guanglei", "Hong", role = "aut"))
 Description: Implements weighted double score matching (WDSM) for estimating
-    causal effects from survey-weighted observational data. Matches units on
-    both propensity scores and prognostic scores incorporating survey design
-    weights, with polynomial sieve bias correction and linearization-based
-    multinomial bootstrap variance estimation. Supports estimation of the
-    population average treatment effect (PATE) and population average
-    treatment effect on the treated (PATT) under retrospective and
-    prospective sampling designs.
+    population-level causal effects from complex survey data. Combines
+    propensity scores and prognostic scores with survey design weights for
+    matching, survey-weighted imputation within match sets, and Hajek
+    normalization to target the population average treatment effect (PATE) and
+    the population average treatment effect on the treated (PATT). Supports
+    both retrospective (treatment-dependent) and prospective
+    (treatment-independent) sampling designs. Achieves double robustness:
+    consistent estimation when either the propensity score or prognostic score
+    model is correctly specified. Provides polynomial sieve bias correction
+    and linearization-based multinomial bootstrap variance estimation that
+    preserves the survey-weighted matching structure without re-matching.
+    Methods are described in Zeng, Li, and Hong (2026)
+    <doi:10.xxxx/xxxxx>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

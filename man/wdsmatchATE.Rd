@@ -2,7 +2,7 @@
 % Please edit documentation in R/wdsmatchATE.R
 \name{wdsmatchATE}
 \alias{wdsmatchATE}
-\title{Weighted Double Score Matching Estimator for Average Treatment Effect}
+\title{Weighted Double Score Matching Estimator for Population Average Treatment Effect}
 \usage{
 wdsmatchATE(
   Y,
@@ -75,18 +75,32 @@ A list with components:
   \item{call}{The matched call.}
 }
 \description{
-Estimates the population average treatment effect (PATE) using weighted
-double score matching with survey design weights. Matches treated and
-control units on both propensity scores and prognostic scores, applies
-polynomial sieve bias correction, and computes confidence intervals
-via linearization-based multinomial bootstrap.
+Estimates the population average treatment effect (PATE),
+\eqn{\tau_{\mathrm{PATE}} = E[Y(1) - Y(0)]}, using weighted double score
+matching (WDSM) with survey design weights. The method matches treated and
+control units on arm-specific double scores
+\eqn{D_z(X) = (e(X), \Psi_z(X))} for \eqn{z \in \{0,1\}}, imputes
+missing potential outcomes via survey-weighted averaging within match sets,
+and aggregates using Hajek normalization. Polynomial sieve bias correction
+removes the finite-sample matching discrepancy. Variance estimation uses a
+linearization-based multinomial bootstrap that re-estimates score parameters
+while preserving the original matching structure and survey-weighted reuse
+frequencies \eqn{K_z^{R,\mathrm{PATE}}(i)}.
 }
 \details{
-The propensity score model may be survey-weighted (retrospective sampling)
-or unweighted (prospective sampling), controlled by the \code{sampling}
-argument. Prognostic scores are always estimated without survey weights.
-The sieve basis uses log-odds of the propensity score, consistent with
-the matching coordinate system.
+The estimator achieves double robustness: it is consistent when either the
+propensity score model or the prognostic score model is correctly specified.
+
+Under retrospective sampling (\code{sampling = "retrospective"}), the
+propensity score is estimated with survey weights to recover the
+population-level treatment assignment mechanism. Under prospective sampling
+(\code{sampling = "prospective"}), the propensity score is estimated
+without survey weights. Prognostic scores are always estimated without
+survey weights, as the conditional outcome mean is invariant to the
+sampling design.
+
+The sieve basis uses log-odds of the propensity score to match the
+coordinate system used in matching distance computation.
 }
 \examples{
 data(survey_obs)
