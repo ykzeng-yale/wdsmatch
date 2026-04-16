@@ -1,7 +1,7 @@
 Package: wdsmatch
 Type: Package
 Title: Weighted Double Score Matching for Survey-Weighted Causal Inference
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Yukang", "Zeng", email = "ykzeng2019@gmail.com", role = c("aut", "cre")),
     person("Guangyu", "Tong", role = "aut"),
@@ -22,8 +22,8 @@ Description: Implements weighted double score matching (WDSM) for estimating
     and linearization-based multinomial bootstrap variance estimation that
     preserves the survey-weighted matching structure without re-matching.
     Methods are described in Zeng, Tong, Tong, Lu, Mukherjee, and Li
-    (2026) "Where to weight? Estimating population causal effects with
-    weighted double score matching in complex surveys".
+    (2026, under review) "Where to weight? Estimating population causal
+    effects with weighted double score matching in complex surveys".
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

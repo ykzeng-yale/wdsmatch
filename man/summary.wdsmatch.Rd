@@ -7,9 +7,14 @@
 \method{summary}{wdsmatch}(object, ...)
 }
 \arguments{
-\item{object}{A \code{wdsmatch} object.}
+\item{object}{A \code{wdsmatch} object returned by \code{\link{wdsmatchATE}}
+or \code{\link{wdsmatchATT}}.}
 
 \item{...}{Additional arguments (ignored).}
+}
+\value{
+Invisibly returns the input object. Called for its side effect
+  of printing a formatted summary to the console.
 }
 \description{
 Summary method for wdsmatch objects

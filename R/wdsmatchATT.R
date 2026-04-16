@@ -1,16 +1,15 @@
 #' Weighted Double Score Matching Estimator for Population Average Treatment Effect on the Treated
 #'
-#' Estimates the population average treatment effect on the treated (PATT),
-#' \eqn{\tau_{\mathrm{PATT}} = E[Y(1) - Y(0) \mid Z = 1]}, using weighted
-#' double score matching (WDSM) with survey design weights. Performs one-sided
-#' matching from treated to control units on the control-side double score
-#' \eqn{D_0(X) = (e(X), \Psi_0(X))}. Only the counterfactual control outcome
-#' \eqn{Y(0)} needs imputation; treated outcomes are directly observed.
-#' Aggregation uses Hajek normalization over treated-side survey weights.
-#' Polynomial sieve bias correction and linearization-based multinomial
-#' bootstrap with survey-weighted reuse frequencies \eqn{K_0^{R,\mathrm{PATT}}(j)}
-#' are applied. PATT requires only one-sided unconfoundedness:
-#' \eqn{Y(0) \perp Z \mid X}.
+#' Estimates the population average treatment effect on the treated (PATT)
+#' using weighted double score matching (WDSM) with survey design weights.
+#' Performs one-sided matching from treated to control units on the
+#' control-side double score D_0(X) = (e(X), Psi_0(X)). Only the
+#' counterfactual control outcome Y(0) needs imputation; treated outcomes
+#' are directly observed. Aggregation uses Hajek normalization over
+#' treated-side survey weights. Polynomial sieve bias correction and
+#' linearization-based multinomial bootstrap with survey-weighted reuse
+#' frequencies are applied. PATT requires only one-sided
+#' unconfoundedness: Y(0) independent of Z given X.
 #'
 #' @inheritParams wdsmatchATE
 #'

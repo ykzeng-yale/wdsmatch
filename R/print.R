@@ -1,8 +1,13 @@
 #' Print method for wdsmatch objects
 #'
-#' @param x A \code{wdsmatch} object.
+#' @param x A \code{wdsmatch} object returned by \code{\link{wdsmatchATE}}
+#'   or \code{\link{wdsmatchATT}}.
 #' @param digits Number of significant digits.
 #' @param ... Additional arguments (ignored).
+#' @return Invisibly returns the input object \code{x}. Called for its
+#'   side effect of printing a formatted summary to the console, including
+#'   the point estimate, standard error, confidence interval, number of
+#'   matches, and sample sizes.
 #' @export
 print.wdsmatch <- function(x, digits = 4, ...) {
   cat("\nWeighted Double Score Matching\n")
@@ -24,8 +29,11 @@ print.wdsmatch <- function(x, digits = 4, ...) {
 
 #' Summary method for wdsmatch objects
 #'
-#' @param object A \code{wdsmatch} object.
+#' @param object A \code{wdsmatch} object returned by \code{\link{wdsmatchATE}}
+#'   or \code{\link{wdsmatchATT}}.
 #' @param ... Additional arguments (ignored).
+#' @return Invisibly returns the input object. Called for its side effect
+#'   of printing a formatted summary to the console.
 #' @export
 summary.wdsmatch <- function(object, ...) {
   print.wdsmatch(object, ...)

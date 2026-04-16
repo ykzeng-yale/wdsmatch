@@ -1,16 +1,15 @@
 #' Weighted Double Score Matching Estimator for Population Average Treatment Effect
 #'
-#' Estimates the population average treatment effect (PATE),
-#' \eqn{\tau_{\mathrm{PATE}} = E[Y(1) - Y(0)]}, using weighted double score
-#' matching (WDSM) with survey design weights. The method matches treated and
-#' control units on arm-specific double scores
-#' \eqn{D_z(X) = (e(X), \Psi_z(X))} for \eqn{z \in \{0,1\}}, imputes
-#' missing potential outcomes via survey-weighted averaging within match sets,
-#' and aggregates using Hajek normalization. Polynomial sieve bias correction
-#' removes the finite-sample matching discrepancy. Variance estimation uses a
-#' linearization-based multinomial bootstrap that re-estimates score parameters
-#' while preserving the original matching structure and survey-weighted reuse
-#' frequencies \eqn{K_z^{R,\mathrm{PATE}}(i)}.
+#' Estimates the population average treatment effect (PATE) using weighted
+#' double score matching (WDSM) with survey design weights. The method
+#' matches treated and control units on arm-specific double scores
+#' D_z(X) = (e(X), Psi_z(X)) for z in \{0,1\}, imputes missing potential
+#' outcomes via survey-weighted averaging within match sets, and aggregates
+#' using Hajek normalization. Polynomial sieve bias correction removes the
+#' finite-sample matching discrepancy. Variance estimation uses a
+#' linearization-based multinomial bootstrap that re-estimates score
+#' parameters while preserving the original matching structure and
+#' survey-weighted reuse frequencies.
 #'
 #' @details
 #' The estimator achieves double robustness: it is consistent when either the

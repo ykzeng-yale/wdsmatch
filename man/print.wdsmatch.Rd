@@ -7,11 +7,18 @@
 \method{print}{wdsmatch}(x, digits = 4, ...)
 }
 \arguments{
-\item{x}{A \code{wdsmatch} object.}
+\item{x}{A \code{wdsmatch} object returned by \code{\link{wdsmatchATE}}
+or \code{\link{wdsmatchATT}}.}
 
 \item{digits}{Number of significant digits.}
 
 \item{...}{Additional arguments (ignored).}
+}
+\value{
+Invisibly returns the input object \code{x}. Called for its
+  side effect of printing a formatted summary to the console, including
+  the point estimate, standard error, confidence interval, number of
+  matches, and sample sizes.
 }
 \description{
 Print method for wdsmatch objects
