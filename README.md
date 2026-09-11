@@ -9,9 +9,9 @@ observational data using weighted double score matching.
 Version 0.2.0 corrects point-estimation and replication calculations inherited
 by version 0.1.1. Estimates, standard errors, and confidence intervals may change.
 Rerun analyses made with 0.1.1 before reusing their numerical results. See
-[NEWS.md](NEWS.md) for the changes. As of preparation of this release candidate,
-CRAN still distributes version 0.1.1; this repository contains the corrected
-0.2.0 candidate, which has not yet been accepted by CRAN.
+[NEWS.md](NEWS.md) for the changes. Version 0.2.0 was submitted to CRAN and
+confirmed by the maintainer on 2026-09-11. It is awaiting CRAN review;
+version 0.1.1 remains the CRAN release until acceptance and publication.
 
 ## Installation
 

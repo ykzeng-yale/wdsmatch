@@ -11,9 +11,10 @@ additional inference metadata. The maintainer and license are unchanged.
 
 ## Submission preparation status
 
-This file documents a prepared release candidate. No submission has been made.
-The candidate is ready for maintainer review; the remaining platform checks
-listed below should be completed before uploading it to CRAN.
+Version 0.2.0 was submitted on 2026-09-11 using the existing maintainer address
+ykzeng2019@gmail.com. Maintainer email confirmation completed at 21:04 UTC;
+the submission interface and receipt email confirmed delivery to CRAN for review.
+This records receipt, not CRAN acceptance or publication.
 
 ## Check environments and results
 
@@ -23,17 +24,23 @@ listed below should be completed before uploading it to CRAN.
   0 errors, 0 warnings, and 0 notes; 323 test assertions passed with no
   skips. The source tarball was built and checked in the same isolated
   current-R environment.
-- R-devel Linux R CMD check --as-cran: pending.
-- R-release Windows R CMD check --as-cran: pending.
-- R-release macOS R CMD check --as-cran: pending.
+- R-devel Linux, 4.7.0 (2026-09-10 r90519), --as-cran --no-manual:
+  0 errors, 0 warnings, 0 notes.
+- R-release Windows, 4.6.1, --as-cran --no-manual:
+  0 errors, 0 warnings, 0 notes.
+- R-release macOS arm64, 4.6.1, --as-cran --no-manual:
+  0 errors, 0 warnings, 0 notes.
+- R-release Linux x86_64, 4.6.1, full --as-cran: 0 errors, 0 warnings,
+  1 environment note because HTML checking requires tidy or the R package V8.
+  The PDF manual passed. This note was disclosed in the submission comment.
 - Local macOS arm64, R 4.4.0: full --as-cran check including PDF/HTML manuals and examples passed with 0 errors, 0 warnings, and one environment note (unable to verify current time). This is an additional compatibility check, not a substitute for current R.
 - Local regression suite: 41 tests and 323 assertions passed without test warnings or skips. Frozen-reference comparison: all 96 settings and 768 paired draws agreed exactly.
 
-The repository workflow checks Linux R-release and R-devel, Windows R-release,
-and macOS R-release. Linux R-release includes the PDF manual; the other
-environments omit it. The workflow is now committed directly to `main`, but
-its configuration is not evidence that any of those platform jobs has
-completed.
+Completed GitHub run: https://github.com/ykzeng-yale/wdsmatch/actions/runs/34646035889
+All four jobs passed 323 assertions without skips or warnings and matched all
+96 settings and 768 paired draws exactly. All four built archives match the
+submitted archive's substantive content; differences are limited to generated
+Packaged metadata and Windows text line endings. Binary data is byte-identical.
 
 ## Downstream dependencies
 
@@ -43,5 +50,6 @@ There were therefore no reverse-dependent packages to recheck.
 
 ## Notes
 
-Record and explain any actual check notes here. Do not copy the previous
-version's zero-error/zero-warning/zero-note statement without a new check.
+The environment-only Linux HTML-tools note and older local macOS clock note
+are described above. Neither indicates an estimator or test failure. Current
+R checks on Debian ARM64, Windows, macOS, and Linux R-devel are clean.
