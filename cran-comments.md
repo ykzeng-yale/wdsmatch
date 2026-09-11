@@ -11,14 +11,18 @@ additional inference metadata. The maintainer and license are unchanged.
 
 ## Submission preparation status
 
-This file is a draft for the release candidate. No submission has been made.
-Replace the pending entries below with completed results from the final source
-tarball before uploading it to CRAN.
+This file documents a prepared release candidate. No submission has been made.
+The candidate is ready for maintainer review; the remaining platform checks
+listed below should be completed before uploading it to CRAN.
 
 ## Check environments and results
 
-- Final source tarball name and SHA256: pending final build.
-- Current R-release/patched build and R CMD check --as-cran: pending.
+- Final source tarball name and SHA256: `wdsmatch_0.2.0.tar.gz`,
+  `5303ec6e6dc43af0674a7a3639d6c9119411a30825ec98c6f6c6e0af922139e6`.
+- Current R 4.6.1 Debian arm64 build and `R CMD check --as-cran --no-manual`:
+  0 errors, 0 warnings, and 0 notes; 323 test assertions passed with no
+  skips. The source tarball was built and checked in the same isolated
+  current-R environment.
 - R-devel Linux R CMD check --as-cran: pending.
 - R-release Windows R CMD check --as-cran: pending.
 - R-release macOS R CMD check --as-cran: pending.
@@ -26,8 +30,10 @@ tarball before uploading it to CRAN.
 - Local regression suite: 41 tests and 323 assertions passed without test warnings or skips. Frozen-reference comparison: all 96 settings and 768 paired draws agreed exactly.
 
 The repository workflow checks Linux R-release and R-devel, Windows R-release,
-and macOS R-release. Linux R-release includes the PDF manual; the other environments omit it. Workflow configuration is not
-evidence that any of these checks has completed.
+and macOS R-release. Linux R-release includes the PDF manual; the other
+environments omit it. The workflow is now committed directly to `main`, but
+its configuration is not evidence that any of those platform jobs has
+completed.
 
 ## Downstream dependencies
 
