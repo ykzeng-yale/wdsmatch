@@ -1,11 +1,26 @@
 # wdsmatch: Weighted Double Score Matching for Survey-Weighted Causal Inference
 
-Implements weighted double score matching (WDSM) for estimating causal effects from survey-weighted observational data. Matches units on both propensity scores and prognostic scores incorporating survey design weights, with polynomial sieve bias correction and linearization-based multinomial bootstrap variance estimation.
+`wdsmatch` estimates the population average treatment effect (PATE) and the
+population average treatment effect on the treated (PATT) from survey-weighted
+observational data using weighted double score matching.
+
+## Version 0.2.0 numerical corrections
+
+Version 0.2.0 corrects point-estimation and replication calculations inherited
+by version 0.1.1. Estimates, standard errors, and confidence intervals may change.
+Rerun analyses made with 0.1.1 before reusing their numerical results. See
+[NEWS.md](NEWS.md) for the changes. As of preparation of this release candidate,
+CRAN still distributes version 0.1.1; this repository contains the corrected
+0.2.0 candidate, which has not yet been accepted by CRAN.
 
 ## Installation
 
 ```r
-# From GitHub:
+# CRAN release (check packageVersion("wdsmatch") for the installed version):
+install.packages("wdsmatch")
+
+# Corrected candidate from GitHub, subject to repository access:
+# install.packages("remotes")
 remotes::install_github("ykzeng-yale/wdsmatch")
 ```
 
@@ -15,10 +30,12 @@ remotes::install_github("ykzeng-yale/wdsmatch")
 library(wdsmatch)
 data(survey_obs)
 
-# Estimate PATE (Population Average Treatment Effect)
+covariates <- survey_obs[, c("X1", "X2", "X3", "X4", "X5", "X6")]
+
+set.seed(20260911)
 fit_ate <- wdsmatchATE(
   Y = survey_obs$Y,
-  X = survey_obs[, c("X1","X2","X3","X4","X5","X6")],
+  X = covariates,
   Z = survey_obs$Z,
   weights = survey_obs$survey_weight,
   M = 5,
@@ -29,30 +46,80 @@ fit_ate <- wdsmatchATE(
 )
 fit_ate
 
-# Estimate PATT (Population Average Treatment Effect on the Treated)
+set.seed(20260912)
 fit_att <- wdsmatchATT(
   Y = survey_obs$Y,
-  X = survey_obs[, c("X1","X2","X3","X4","X5","X6")],
+  X = covariates,
   Z = survey_obs$Z,
   weights = survey_obs$survey_weight,
   M = 5,
+  model.ps = Z ~ X1 + X2 + X3 + X4 + X5 + X6 + X1:X2,
+  model.pg = Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X1:X2,
   sampling = "retrospective",
   varest = TRUE, boots = 200
 )
 fit_att
 ```
 
-## Key Features
+## Estimation and inference
 
-- **Double robustness**: Consistent when either the propensity score or prognostic score model is correctly specified
-- **Survey weight integration**: Proper incorporation of survey design weights throughout score estimation, matching, and inference
-- **Flexible sampling designs**: Supports both retrospective (treatment-dependent) and prospective (treatment-independent) sampling
-- **Polynomial sieve bias correction**: 10-term basis for improved finite-sample performance
-- **Linearization-based bootstrap**: Computationally efficient variance estimation preserving the survey-weighted matching structure
+Matching uses propensity probabilities and each arm's prognostic score, with
+unweighted pooled standardization of the two coordinates. Missing potential
+outcomes are imputed using survey-weighted averages within match sets and
+aggregated using Hajek normalization. The default bias correction uses a
+complete quadratic regression in each arm's own two-dimensional double score.
+PATT only needs the control-side prognostic score and bias-correction regression.
+
+For retrospective sampling, propensity-score fitting uses survey weights; for
+prospective sampling it is unweighted. Prognostic-score fitting is unweighted
+in both designs. Replication refits incorporate multinomial counts in addition
+to the respective fitting weights and retain the original matching reuse
+coefficients without re-matching.
+
+Confidence intervals are centered normal Wald intervals:
+
+```r
+se <- sqrt(mean((fit_ate$boot.estimates - mean(fit_ate$boot.estimates))^2))
+ci <- fit_ate$estimate + c(-1, 1) * qnorm(1 - fit_ate$alpha / 2) * se
+```
+
+The replication variance uses divisor `boots` (B). All B draws must succeed;
+invalid fits or draws produce an informative error rather than a silently
+shortened replication sample or a zero placeholder. Supplied scores remain
+fixed during replication, so inference is conditional on those scores and
+does not include uncertainty from their external estimation. With bias correction
+enabled, internally estimated scores are refitted. With `use.bias.correction = FALSE`,
+neither an outcome bias-correction regression nor unused score refits are performed
+in the raw fixed-match replicates; matching discrepancies remain, so the
+bias-corrected asymptotic justification does not automatically apply.
+
+The double-robustness property concerns consistency under the stated
+identification, sampling, overlap, and regularity assumptions when a required
+score model is correct. It does not guarantee negligible finite-sample bias or
+nominal coverage in every setting, particularly under poor overlap or joint
+model misspecification. The interface accepts unit-level survey weights but
+does not encode strata, primary sampling units, or survey-design-specific
+replicate weights. Its multinomial procedure is not a general replacement for
+variance estimation under an arbitrary complex survey design.
+
+The default matching ratio remains `M = 5` for API compatibility. Users can
+examine sensitivity to a prespecified set such as `M = 1, 3, 5`; no single ratio
+is uniformly best across bias, variance, and coverage.
+
+## Development checks
+
+The package contains deterministic regression tests and a GitHub Actions
+matrix for Linux R-release/R-devel, Windows R-release, and macOS R-release.
+The workflow builds and checks source tarballs with `R CMD check --as-cran`.
+Linux R-release includes the PDF manual; the other platforms omit the manual.
+Configured checks are not a guarantee of statistical validity or evidence
+that a particular candidate has completed validation.
 
 ## References
 
-Zeng, Y., Tong, G., Tong, J., Lu, H., Mukherjee, B., and Li, F. (2026). Where to weight? Estimating population causal effects with weighted double score matching in complex surveys. *Manuscript under review*.
+Zeng, Y., Tong, G., Tong, J., Lu, H., Mukherjee, B., and Li, F. (2026).
+Where to weight? Estimating population causal effects with weighted double
+score matching in complex surveys. *Manuscript under review*.
 
 ## License
 
