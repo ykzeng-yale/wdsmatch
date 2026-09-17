@@ -40,3 +40,20 @@ with the recent-release and unverifiable-current-time notes.
 See `platform_verification.json`, platform logs, and the saved case records.
 This is a numerical implementation audit, not a proof of discrete-score or
 complex-survey replication validity. Version 0.2.1 has not been submitted to CRAN.
+
+## Submission readiness
+
+The independent source and artifact review found no material implementation or
+compatibility defect. The preferred submission archive was built and checked
+with current R 4.6.1 on Linux; SHA256
+`a41a4aea58814e889f1fc4d8a0f7a71f0876647520f480911d7b1055ecbdb73b`.
+Fresh CRAN source metadata lists no reverse dependencies.
+
+At the September 17 review, the official check page still listed 0.1.1 for
+`r-release-linux-x86_64` and `r-release-macos-arm64`; the other 11 flavors
+listed the current 0.2.0 release. All reported OK. CRAN's re-submission policy
+asks maintainers to wait until that page is fully updated after publication.
+Accordingly, the tested 0.2.1 archive is ready but has not been uploaded. Recheck
+[the official page](https://cran.r-project.org/web/checks/check_results_wdsmatch.html)
+before submission. See [independent_review.md](independent_review.md) for the
+source audit, all platform versions, archive hashes, and policy link.

@@ -31,3 +31,11 @@ archive substantively, after accounting for generated metadata and CRLF.
 
 Version 0.2.1 has not yet been submitted. The original 0.2.0 submission/check
 record is preserved in validation/cran_comments_020_historical.md.
+
+## Submission prerequisite checked September 17
+
+The CRAN check page has not fully updated from the preceding release: two
+flavors still list 0.1.1 while the remaining eleven list 0.2.0, all OK. Upload
+is held until those entries update, as requested by the re-submission policy.
+The preferred checked source archive was built with current R 4.6.1. Fresh
+CRAN source metadata lists no reverse dependencies.
