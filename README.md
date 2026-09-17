@@ -4,14 +4,26 @@
 population average treatment effect on the treated (PATT) from survey-weighted
 observational data using weighted double score matching.
 
+## Version 0.2.1 candidate: recipient-specific random ties
+
+Boundary-distance ties are now sampled independently for each recipient, retaining
+all strictly closer donors and exactly M distinct opposite-arm matches. The
+`tie.seed` argument controls a separate random stream, leaving the bootstrap
+stream unchanged. The original match sets and weighted reuse stay fixed during
+replication. `tie.tolerance = 0` selects exact floating-point ties only; the default
+also groups distances within machine-precision tolerance. See the help page for
+the exact scale and `fit$diagnostics$ties` for counts and settings.
+
+This addresses deterministic donor concentration in repeated score profiles.
+It does not itself extend continuous-score inference theory to discrete scores.
+The 0.2.1 candidate has not been submitted to CRAN.
+
 ## Version 0.2.0 numerical corrections
 
 Version 0.2.0 corrects point-estimation and replication calculations inherited
 by version 0.1.1. Estimates, standard errors, and confidence intervals may change.
 Rerun analyses made with 0.1.1 before reusing their numerical results. See
-[NEWS.md](NEWS.md) for the changes. Version 0.2.0 was submitted to CRAN and
-confirmed by the maintainer on 2026-09-11. It is awaiting CRAN review;
-version 0.1.1 remains the CRAN release until acceptance and publication.
+[NEWS.md](NEWS.md) for the changes. Version 0.2.0 was published on CRAN on 2026-09-11 (verified 2026-09-17).
 
 ## Installation
 

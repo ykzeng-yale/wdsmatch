@@ -1,3 +1,13 @@
+# September 17 tie correction
+
+The candidate uses the same allocation helper as SW_DSM. The source-file SHA256 is
+`a59bb584a41d7e1c7aa604b8800eb985ce8719378bb718f224dad5d3d2dee348`.
+The refreshed no-tie comparison in `ties_20260917/no_tie_parity/` retains exact
+agreement on all 96 settings and 768 draws. `case_equivalence.R` compares all five
+full-size application WDSM fits, including 200 draws each, against separately
+executed case-study code on Bouchet. No source files from the September 11
+reference audit have been overwritten.
+
 # Independent implementation validation
 
 This directory is kept in the GitHub repository and excluded from the CRAN
