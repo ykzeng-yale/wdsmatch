@@ -1,0 +1,9 @@
+Warning message:
+'memory.limit()' is Windows-specific 
+* checking for file ‘./DESCRIPTION’ ... OK
+* preparing ‘wdsmatch’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘wdsmatch_0.2.1.tar.gz’
+

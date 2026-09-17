@@ -16,7 +16,9 @@ the exact scale and `fit$diagnostics$ties` for counts and settings.
 
 This addresses deterministic donor concentration in repeated score profiles.
 It does not itself extend continuous-score inference theory to discrete scores.
-The 0.2.1 candidate has not been submitted to CRAN.
+The 0.2.1 candidate has not been submitted to CRAN. All four platform checks
+passed, along with 1,000 paired application bootstrap draws; see the
+[verification record](validation/ties_20260917/README.md).
 
 ## Version 0.2.0 numerical corrections
 

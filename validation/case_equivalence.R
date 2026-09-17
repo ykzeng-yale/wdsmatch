@@ -37,10 +37,19 @@ exact<-pkg$wdsm_make_matches(d$A,scores$D0,scores$D1,gold$manifest$M,"PATE",
   tie_seed=gold$manifest$tie_seed,tie_tolerance=0)
 roundoff<-pkg$wdsm_make_matches(d$A,scores$D0,scores$D1,gold$manifest$M,"PATE",
   tie_seed=gold$manifest$tie_seed)
-stopifnot(identical(exact$matches_0,roundoff$matches_0),identical(exact$matches_1,roundoff$matches_1))
+same_ordered<-identical(exact$matches_0,roundoff$matches_0)&&identical(exact$matches_1,roundoff$matches_1)
+changed_sets<-sum(!mapply(setequal,exact$matches_0,roundoff$matches_0))+
+  sum(!mapply(setequal,exact$matches_1,roundoff$matches_1))
+exact_point<-pkg$wdsm_point(d$Y,d$A,d$survey_weight,scores,gold$manifest$M,"PATE",
+  tie_seed=gold$manifest$tie_seed,tie_tolerance=0)
+# Zero tolerance is an alternative requested numerical rule, not an invariant.
+# Record its effect rather than treating possible changes as estimator failures.
 files<-list.files(file.path(pkg_root,"R"),pattern="[.]R$",full.names=TRUE)
 saveRDS(list(status="complete",result=result,max_differences=changes,
   case_manifest=gold$manifest,case_record_md5=tools::md5sum(file.path(records,sprintf("task_%02d.rds",task))),
   source_md5=setNames(unname(tools::md5sum(files)),basename(files)),
-  exact_and_roundoff_allocation_identical=TRUE,session=sessionInfo()),file)
+  exact_and_roundoff_allocation_identical=same_ordered,
+  exact_vs_roundoff_changed_recipient_sets=changed_sets,
+  exact_only_point=exact_point$estimate,
+  exact_only_minus_default=exact_point$estimate-result$estimate,session=sessionInfo()),file)
 print(changes,digits=14)
