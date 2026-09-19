@@ -4,7 +4,7 @@
 population average treatment effect on the treated (PATT) from survey-weighted
 observational data using weighted double score matching.
 
-## Version 0.2.1 candidate: recipient-specific random ties
+## Version 0.2.1 submitted update: recipient-specific random ties
 
 Boundary-distance ties are now sampled independently for each recipient, retaining
 all strictly closer donors and exactly M distinct opposite-arm matches. The
@@ -16,9 +16,11 @@ the exact scale and `fit$diagnostics$ties` for counts and settings.
 
 This addresses deterministic donor concentration in repeated score profiles.
 It does not itself extend continuous-score inference theory to discrete scores.
-The 0.2.1 candidate has not been submitted to CRAN. All four platform checks
-passed, along with 1,000 paired application bootstrap draws; see the
-[verification record](validation/ties_20260917/README.md).
+Version 0.2.1 was submitted and maintainer-confirmed on September 19, 2026
+(submission 355876); CRAN acceptance is pending. All four platform checks
+passed, along with 1,000 paired application bootstrap draws. See the
+[submission record](validation/submission_20260919/README.md) and
+[verification evidence](validation/ties_20260917/README.md).
 
 ## Version 0.2.0 numerical corrections
 
@@ -33,7 +35,7 @@ Rerun analyses made with 0.1.1 before reusing their numerical results. See
 # CRAN release (check packageVersion("wdsmatch") for the installed version):
 install.packages("wdsmatch")
 
-# Corrected candidate from GitHub, subject to repository access:
+# Corrected 0.2.1 from GitHub, subject to repository access:
 # install.packages("remotes")
 remotes::install_github("ykzeng-yale/wdsmatch")
 ```

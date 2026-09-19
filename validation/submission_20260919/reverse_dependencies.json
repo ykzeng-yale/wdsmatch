@@ -1,0 +1,16 @@
+{
+  "checked_utc": "2026-09-19T21:31:22.455794+00:00",
+  "source": "https://cran.r-project.org/src/contrib/PACKAGES.gz",
+  "published_package": {
+    "Package": "wdsmatch",
+    "Version": "0.2.0",
+    "Depends": "R (>= 3.5.0)",
+    "Imports": "stats",
+    "Suggests": "testthat (>= 3.0.0), knitr, rmarkdown",
+    "License": "GPL-3",
+    "MD5sum": "bc95fff70a1483c02e139158cd20f004",
+    "NeedsCompilation": "no",
+    "Published": "2026-09-11 21:20:02 UTC"
+  },
+  "reverse_dependencies": []
+}

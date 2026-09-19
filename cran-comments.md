@@ -1,41 +1,48 @@
-## Update from 0.2.0 to 0.2.1
+## wdsmatch 0.2.1: correctness update to 0.2.0
 
-Version 0.2.0 is the current CRAN release, published 2026-09-11 (verified
-2026-09-17). This candidate replaces deterministic donor-row priority at the
-Mth-distance boundary with independent recipient-specific random selection.
-Strictly closer donors are retained; every recipient receives exactly M
-opposite-arm donors. Matching remains with replacement across recipients.
+Please consider this correction to version 0.2.0, published September 11, 2026.
+It replaces deterministic donor-row priority at a tied Mth-distance boundary
+with uniform selection without replacement within each recipient's boundary
+group. Strictly closer donors are retained; each recipient receives exactly M
+donors, with replacement allowed across recipients. This addresses donor
+concentration when scores arise from discrete covariates.
 
-The separate tie seed preserves the caller's RNG state and bootstrap count
-stream. Original match sets and weighted reuse are held fixed during every
-replication. New optional arguments are appended to the existing interfaces.
-R >= 3.6.0 is required for the specified rejection-sampling RNG.
+A separate tie seed preserves the caller's RNG state and bootstrap count
+stream. Original matches and weighted reuse coefficients remain fixed during
+replication. Optional arguments are appended to the existing interfaces; there
+are no API removals or new package dependencies. R >= 3.6.0 is required for the
+specified rejection-sampling RNG.
 
-## Validation status
+## Checks and numerical verification
 
-All 1,275 local regression assertions pass without skips or test warnings,
-including discrete-score donor-allocation,
-independent point/replication oracles, RNG preservation, and validation checks.
-All 96 continuous-score settings and 768 paired bootstrap draws agree exactly
-with the separately frozen 0.2.0 reference. A full local macOS R 4.4.0 check, including PDF and HTML manuals, reports
-zero errors and zero warnings. The two notes concern the recent CRAN release
-(six days ago) and inability to verify current time. This patch addresses a
-substantive donor-concentration issue with discrete covariates.
-All five full-size application WDSM fits and their 1,000 draws agree with the
-independently executed case code to within 4.58e-16. Current Linux, Windows,
-macOS, and Linux R-devel checks all completed with zero errors/warnings and
-1,275 assertions passing per platform (GitHub run 35258885396). All platforms
-note the release six days earlier; Linux release additionally notes unavailable
-HTML tidy/V8. Its PDF manual passed. All platform archives match the canonical
-archive substantively, after accounting for generated metadata and CRLF.
+The submitted source archive was built and checked on Ubuntu with R 4.6.1.
+The equivalent source also passed Windows, macOS, and Linux R-devel checks
+(R-devel 2026-09-16 r90549). All four platforms report zero errors/warnings and
+1,275 passing test assertions, with no test failures, warnings, or skips.
 
-Version 0.2.1 has not yet been submitted. The original 0.2.0 submission/check
-record is preserved in validation/cran_comments_020_historical.md.
+All platforms note the recent release (six days before the September 17
+checks). Linux release additionally notes unavailable HTML tidy/V8; its PDF
+manual passed. We request this early update because it corrects discrete-score
+donor allocation. The archive SHA256 is
+ a41a4aea58814e889f1fc4d8a0f7a71f0876647520f480911d7b1055ecbdb73b.
 
-## Submission prerequisite checked September 17
+The checked source agrees exactly with the frozen 0.2.0 estimator for all 96
+continuous-score settings and 768 paired bootstrap draws per platform. Five
+full-size application fits and 1,000 replication draws agree with independently
+executed case-study code to within 4.58e-16. Tests also cover tied boundaries,
+independent imputation/replication oracles, RNG preservation, and validation.
+Fresh CRAN source metadata on September 19 lists no reverse dependencies under
+Depends, Imports, LinkingTo, Suggests, or Enhances.
 
-The CRAN check page has not fully updated from the preceding release: two
-flavors still list 0.1.1 while the remaining eleven list 0.2.0, all OK. Upload
-is held until those entries update, as requested by the re-submission policy.
-The preferred checked source archive was built with current R 4.6.1. Fresh
-CRAN source metadata lists no reverse dependencies.
+## Current CRAN check-page status and request for consideration
+
+We consulted the CRAN check page again on September 19: twelve flavors list
+0.2.0, all OK; r-release-linux-x86_64 still lists 0.1.1, also OK. macOS arm64
+has updated since our September 17 review.
+
+We recognize the policy request to wait for the check page to fully update.
+The remaining Linux entry has not updated. We disclose this explicitly and
+request consideration of this substantive correction based on the successful
+current-platform checks above. Please let us know if submission should instead
+wait for that entry to refresh. We are not claiming that the page is fully
+updated or that an exception has already been granted.

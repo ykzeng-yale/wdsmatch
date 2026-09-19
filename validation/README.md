@@ -1,3 +1,7 @@
+Current submission status: wdsmatch 0.2.1 was submitted and maintainer-confirmed
+September 19, 2026; CRAN acceptance is pending. See the
+[submission record](submission_20260919/README.md).
+
 # September 17 tie correction
 
 The candidate uses the same allocation helper as SW_DSM. The source-file SHA256 is
