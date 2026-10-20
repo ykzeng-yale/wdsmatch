@@ -120,6 +120,12 @@ The weight-only interface and individual-unit multinomial replication do
 not provide general variance estimation for arbitrary clustered or
 stratified survey designs. See \code{\link{wdsmatchATE}} for full details.
 }
+\references{
+Zeng Y, Tong G, Tong J, Lu H, Mukherjee B, Li F. Where to weight? Estimating
+population causal effects with weighted double score matching in complex
+surveys. Preprint. arXiv. Posted online October 19, 2026.
+\doi{10.48550/arXiv.2610.25870}.
+}
 \examples{
 data(survey_obs)
 fit <- wdsmatchATT(

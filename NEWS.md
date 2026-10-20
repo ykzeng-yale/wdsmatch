@@ -1,3 +1,12 @@
+# wdsmatch 0.2.2 (unreleased)
+
+* Add the WDSM preprint to package metadata and function documentation.
+* Add the paper and software references to `citation("wdsmatch")`, and
+  provide AMA and BibTeX citations in the README.
+* Streamline repository documentation and remove dated submission records
+  and generated validation outputs; retain the automated regression checks.
+* No changes to estimation, inference, public arguments, or example data.
+
 # wdsmatch 0.2.1
 
 * Randomize boundary-distance donor selection independently for each recipient,
@@ -8,7 +17,6 @@
 * Preserve fixed original matches and weighted reuse during replication.
   No-tie estimates and replication draws are unchanged.
 * Require R >= 3.6.0 for the specified reproducible rejection-sampling RNG.
-* This is a candidate update; the published 0.2.0 artifact is retained.
 
 # wdsmatch 0.2.0
 

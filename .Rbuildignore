@@ -4,6 +4,7 @@
 ^cran-comments\.md$
 ^data-raw$
 ^README\.md$
+^CITATION\.cff$
 ^\.github$
 ^check$
 ^.*\.tar\.gz$

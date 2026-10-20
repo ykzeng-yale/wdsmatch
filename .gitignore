@@ -8,3 +8,5 @@ inst/doc
 *.tar.gz
 *.Rcheck/
 check/
+validation/results/
+validation/*.log

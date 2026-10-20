@@ -177,6 +177,12 @@ unit-level weights, not survey strata, clusters, or design-specific replicate
 weights. The individual-unit multinomial procedure is not a general variance
 estimator for arbitrary complex survey designs.
 }
+\references{
+Zeng Y, Tong G, Tong J, Lu H, Mukherjee B, Li F. Where to weight? Estimating
+population causal effects with weighted double score matching in complex
+surveys. Preprint. arXiv. Posted online October 19, 2026.
+\doi{10.48550/arXiv.2610.25870}.
+}
 \examples{
 data(survey_obs)
 fit <- wdsmatchATE(

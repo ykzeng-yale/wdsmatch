@@ -1,67 +1,24 @@
-Current submission status: wdsmatch 0.2.1 was submitted and maintainer-confirmed
-September 19, 2026; CRAN acceptance is pending. See the
-[submission record](submission_20260919/README.md).
+# Implementation checks
 
-# September 17 tie correction
+This directory supports the repository's continuous-integration checks and is
+excluded from the CRAN source package. Package regression tests are in `tests/`.
 
-The candidate uses the same allocation helper as SW_DSM. The source-file SHA256 is
-`a59bb584a41d7e1c7aa604b8800eb985ce8719378bb718f224dad5d3d2dee348`.
-The refreshed no-tie comparison in `ties_20260917/no_tie_parity/` retains exact
-agreement on all 96 settings and 768 draws. `case_equivalence.R` compares all five
-full-size application WDSM fits, including 200 draws each, against separately
-executed case-study code on Bouchet. No source files from the September 11
-reference audit have been overwritten.
-
-# Independent implementation validation
-
-This directory is kept in the GitHub repository and excluded from the CRAN
-source package. The ordinary package regression tests remain in `tests/`.
-
-Run from the repository root using base R only:
-
-```sh
-Rscript --vanilla validation/core_equivalence.R
-```
-
-Or supply the candidate package directory, reference file, and output directory:
+From the repository root, run:
 
 ```sh
 Rscript --vanilla validation/core_equivalence.R . validation/frozen_reference_core.R validation/results
 ```
 
-The script sources the candidate's current `R/` files in a separate environment
-from the reference. It does not load a cached installed package. It compares
-96 settings: two synthetic overlap fixtures, retrospective/prospective fitting,
-PATE/PATT, four score-model specifications, and M=1/3/5. Every setting uses eight
-identically seeded multinomial draws. Point estimates, SEs, Wald endpoints,
-and all 768 draws must agree within 1e-10, with no candidate warnings. The
-2026-09-11 final audit achieved exactly zero difference for all quantities.
+The check compares the current package code with a fixed reference on 96 synthetic
+settings and 768 bootstrap draws. It checks numerical implementation agreement,
+not asymptotic validity or general complex-survey variance estimation.
+Generated results are not tracked.
 
-This is an implementation equivalence audit on deterministic synthetic data,
-not a new population simulation study or a proof of asymptotic validity. It
-does not establish general cluster-design-valid inference from weights alone.
+## Reference provenance
 
-## Frozen reference provenance
+`frozen_reference_core.R` is the GPL-3 reference implementation from
+`R/wdsm_core_final.R` in `ykzeng-yale/SW_DSM`, commit
+`f29994650568a6c74098234035420985de97b9ad`. It is not installed or used by the
+package at runtime.
 
-`frozen_reference_core.R` is a byte-identical copy of
-[`R/wdsm_core_final.R`](https://github.com/ykzeng-yale/SW_DSM/blob/f29994650568a6c74098234035420985de97b9ad/R/wdsm_core_final.R)
-from the authors' finalized main-simulation implementation, commit
-`f29994650568a6c74098234035420985de97b9ad` in `ykzeng-yale/SW_DSM`.
-It is included under GPL-3, the same license as this package. It is reference
-material for the audit, not part of the installed package or runtime engine.
-
-Exact reference SHA-256:
-
-```text
-cfc520662596c44b221a53a810254436ef36ae633a466b42e8c2109876c9c15f
-```
-
-`SOURCE_SHA256SUMS.txt` records the candidate R-source files used by the final
-audit. `SHA256SUMS.txt` records the validation files themselves (excluding
-the checksum file). Paths in the source manifest are relative to the repository
-root; paths in the validation manifest are relative to this directory.
-
-`results/core_equivalence_96_settings.csv` reports all comparison errors;
-the companion RDS also retains the 768 candidate/reference draw pairs,
-the R version, and file hashes. `scientific_audit.md` documents the old defects
-and the independent manual-oracle/API regression tests.
+SHA-256: `cfc520662596c44b221a53a810254436ef36ae633a466b42e8c2109876c9c15f`.

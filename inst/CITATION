@@ -1,0 +1,30 @@
+citHeader("To cite wdsmatch in publications, please cite the package version and the methodological paper:")
+
+citation(auto = meta)
+
+bibentry(
+  bibtype = "Misc",
+  key = "zeng2026weightestimatingpopulationcausal",
+  title = "Where to weight? Estimating population causal effects with weighted double score matching in complex surveys",
+  author = c(
+    person("Yukang", "Zeng"),
+    person("Guangyu", "Tong"),
+    person("Jiaqi", "Tong"),
+    person("Haidong", "Lu"),
+    person("Bhramar", "Mukherjee"),
+    person("Fan", "Li")
+  ),
+  year = "2026",
+  eprint = "2610.25870",
+  archivePrefix = "arXiv",
+  primaryClass = "stat.ME",
+  doi = "10.48550/arXiv.2610.25870",
+  url = "https://arxiv.org/abs/2610.25870",
+  note = "Preprint posted online October 19, 2026",
+  textVersion = paste(
+    "Zeng Y, Tong G, Tong J, Lu H, Mukherjee B, Li F.",
+    "Where to weight? Estimating population causal effects with weighted",
+    "double score matching in complex surveys. Preprint. arXiv.",
+    "Posted online October 19, 2026. doi:10.48550/arXiv.2610.25870."
+  )
+)

@@ -4,41 +4,27 @@
 population average treatment effect on the treated (PATT) from survey-weighted
 observational data using weighted double score matching.
 
-## Version 0.2.1 submitted update: recipient-specific random ties
-
-Boundary-distance ties are now sampled independently for each recipient, retaining
-all strictly closer donors and exactly M distinct opposite-arm matches. The
-`tie.seed` argument controls a separate random stream, leaving the bootstrap
-stream unchanged. The original match sets and weighted reuse stay fixed during
-replication. `tie.tolerance = 0` selects exact floating-point ties only; the default
-also groups distances within machine-precision tolerance. See the help page for
-the exact scale and `fit$diagnostics$ties` for counts and settings.
-
-This addresses deterministic donor concentration in repeated score profiles.
-It does not itself extend continuous-score inference theory to discrete scores.
-Version 0.2.1 was submitted and maintainer-confirmed on September 19, 2026
-(submission 355876); CRAN acceptance is pending. All four platform checks
-passed, along with 1,000 paired application bootstrap draws. See the
-[submission record](validation/submission_20260919/README.md) and
-[verification evidence](validation/ties_20260917/README.md).
-
-## Version 0.2.0 numerical corrections
-
-Version 0.2.0 corrects point-estimation and replication calculations inherited
-by version 0.1.1. Estimates, standard errors, and confidence intervals may change.
-Rerun analyses made with 0.1.1 before reusing their numerical results. See
-[NEWS.md](NEWS.md) for the changes. Version 0.2.0 was published on CRAN on 2026-09-11 (verified 2026-09-17).
+[Preprint](https://arxiv.org/abs/2610.25870) |
+[CRAN](https://cran.r-project.org/package=wdsmatch) |
+[Publication code and results](https://github.com/ykzeng-yale/SW_DSM)
 
 ## Installation
 
 ```r
-# CRAN release (check packageVersion("wdsmatch") for the installed version):
+# Released version:
 install.packages("wdsmatch")
 
-# Corrected 0.2.1 from GitHub, subject to repository access:
+# Development version, for users with repository access:
 # install.packages("remotes")
 remotes::install_github("ykzeng-yale/wdsmatch")
 ```
+
+CRAN version 0.2.1 was published on September 20, 2026. The repository contains
+the unreleased 0.2.2 citation and documentation update; numerical code is unchanged
+from 0.2.1. See [NEWS.md](NEWS.md) for release history.
+
+Version 0.2.0 corrected numerical calculations in 0.1.1. Rerun analyses made
+with 0.1.1 before reusing their results.
 
 ## Usage
 
@@ -131,11 +117,38 @@ Linux R-release includes the PDF manual; the other platforms omit the manual.
 Configured checks are not a guarantee of statistical validity or evidence
 that a particular candidate has completed validation.
 
-## References
+## Citation
 
-Zeng, Y., Tong, G., Tong, J., Lu, H., Mukherjee, B., and Li, F. (2026).
-Where to weight? Estimating population causal effects with weighted double
-score matching in complex surveys. *Manuscript under review*.
+Please cite the methodological paper and the package version used.
+The development version includes both references in:
+
+```r
+citation("wdsmatch")
+```
+
+**Paper (AMA style)**
+
+Zeng Y, Tong G, Tong J, Lu H, Mukherjee B, Li F. Where to weight? Estimating
+population causal effects with weighted double score matching in complex
+surveys. Preprint. *arXiv*. Posted online October 19, 2026.
+doi:[10.48550/arXiv.2610.25870](https://doi.org/10.48550/arXiv.2610.25870).
+
+<details>
+<summary>BibTeX</summary>
+
+```bibtex
+@misc{zeng2026weightestimatingpopulationcausal,
+  title = {Where to weight? Estimating population causal effects with weighted double score matching in complex surveys},
+  author = {Yukang Zeng and Guangyu Tong and Jiaqi Tong and Haidong Lu and Bhramar Mukherjee and Fan Li},
+  year = {2026},
+  eprint = {2610.25870},
+  archivePrefix = {arXiv},
+  primaryClass = {stat.ME},
+  url = {https://arxiv.org/abs/2610.25870}
+}
+```
+
+</details>
 
 ## License
 

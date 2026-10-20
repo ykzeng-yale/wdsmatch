@@ -1,7 +1,7 @@
 Package: wdsmatch
 Type: Package
 Title: Weighted Double Score Matching for Survey-Weighted Causal Inference
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
     person("Yukang", "Zeng", email = "ykzeng2019@gmail.com", role = c("aut", "cre")),
     person("Guangyu", "Tong", role = "aut"),
@@ -23,7 +23,8 @@ Description: Implements weighted double score matching (WDSM) for estimating
     confidence intervals, retaining the original matching reuse coefficients
     without re-matching. Supplied scores can be held fixed for inference
     conditional on those scores. This weight-only interface does not encode
-    survey strata, clusters, or design-specific replicate weights.
+    survey strata, clusters, or design-specific replicate weights. The method
+    is described by Zeng et al. (2026) <doi:10.48550/arXiv.2610.25870>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -36,4 +37,5 @@ Suggests:
     knitr,
     rmarkdown
 Config/testthat/edition: 3
-URL: https://cran.r-project.org/package=wdsmatch
+URL: https://cran.r-project.org/package=wdsmatch,
+    https://arxiv.org/abs/2610.25870
