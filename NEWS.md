@@ -1,4 +1,4 @@
-# wdsmatch 0.2.2 (unreleased)
+# wdsmatch 0.2.2
 
 * Add the WDSM preprint to package metadata and function documentation.
 * Add the paper and software references to `citation("wdsmatch")`, and

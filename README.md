@@ -19,9 +19,9 @@ install.packages("wdsmatch")
 remotes::install_github("ykzeng-yale/wdsmatch")
 ```
 
-CRAN version 0.2.1 was published on September 20, 2026. The repository contains
-the unreleased 0.2.2 citation and documentation update; numerical code is unchanged
-from 0.2.1. See [NEWS.md](NEWS.md) for release history.
+CRAN version 0.2.1 was published on September 20, 2026. Version 0.2.2 has been
+submitted to CRAN and is awaiting review. This citation and documentation update
+does not change the numerical code from 0.2.1. See [NEWS.md](NEWS.md) for release history.
 
 Version 0.2.0 corrected numerical calculations in 0.1.1. Rerun analyses made
 with 0.1.1 before reusing their results.
